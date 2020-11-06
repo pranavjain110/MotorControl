@@ -40,7 +40,7 @@ unsigned const int stepperStateTable[] =  { 1, 0, 0, 0,  //State 1
 
 int main(void)
 {
-	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
+    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
 
 //Setup UART for user input
     // Configure clocks
@@ -65,51 +65,51 @@ int main(void)
 
 
 
-	//    //Set up LED1
-	//    PJDIR |= BIT0;
-	//    PJOUT |= BIT0; //Turn on LED1
+    //    //Set up LED1
+    //    PJDIR |= BIT0;
+    //    PJOUT |= BIT0; //Turn on LED1
 
-	    //_______________________Setting TImerB1 (TB1.1)_____________________________
+        //_______________________Setting TImerB1 (TB1.1)_____________________________
 
-	    //___________P3.4 = TB1.1
-	    P3DIR |= BIT4;
-	    P3SEL0 |= BIT4;
+        //___________P3.4 = TB1.1
+        P3DIR |= BIT4;
+        P3SEL0 |= BIT4;
 
-	    __no_operation();
-	//  TB1CCTL0 = CCIE;
-	    TB1CCTL1 |= CCIE; // TBCCR0 interrupt enabled
-	    TB1CCR0 = 0xFFFF;
-	    TB1CCR1 = 0x1aFF;// Not required in
-	    TB1CTL = TBSSEL_1 + MC_1 + ID_0;                 // AMCLK, UP mode
-	//    __no_operation();
-	    TB1CCTL1 |=  OUTMOD_4;// Toggle Mode
-	    __no_operation();
-
-
-
-	//Setting port P1.3, P1.4, P1.5 and P1.6
-	//Setting Port 1.3 as output
-	P1DIR |= BIT3;
-	//    P1OUT |= BIT3;
-	//Setting Port 1.4 as output
-	P1DIR |= BIT4;
-	//    P1OUT |= BIT4;
-	//Setting Port 1.5 as output
-	P1DIR |= BIT5;
-	//    P1OUT |= BIT5;
-	//Setting Port 1.6 as output
-	P1DIR |= BIT6;
-	//    P1OUT |= BIT6;
+        __no_operation();
+    //  TB1CCTL0 = CCIE;
+        TB1CCTL1 |= CCIE; // TBCCR0 interrupt enabled
+        TB1CCR0 = 0xFFFF;
+        TB1CCR1 = 0x1aFF;// Not required in
+        TB1CTL = TBSSEL_1 + MC_1 + ID_0;                 // AMCLK, UP mode
+    //    __no_operation();
+        TB1CCTL1 |=  OUTMOD_4;// Toggle Mode
+        __no_operation();
 
 
-	i = stepperStateTable[1];
-	__no_operation;
 
-	stepperState = 1;
+    //Setting port P1.3, P1.4, P1.5 and P1.6
+    //Setting Port 1.3 as output
+    P1DIR |= BIT3;
+    //    P1OUT |= BIT3;
+    //Setting Port 1.4 as output
+    P1DIR |= BIT4;
+    //    P1OUT |= BIT4;
+    //Setting Port 1.5 as output
+    P1DIR |= BIT5;
+    //    P1OUT |= BIT5;
+    //Setting Port 1.6 as output
+    P1DIR |= BIT6;
+    //    P1OUT |= BIT6;
+
+
+    i = stepperStateTable[1];
+    __no_operation;
+
+    stepperState = 1;
     _EINT();
 
-	while(1)
-	{
+    while(1)
+    {
 
         if(flagByteRx == 1)
         {
@@ -223,8 +223,8 @@ int main(void)
 
             __no_operation();
         }
-	}
-	return 0;
+    }
+    return 0;
 }
 
 
