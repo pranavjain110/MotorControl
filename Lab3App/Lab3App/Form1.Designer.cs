@@ -32,6 +32,11 @@
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label5;
+            System.Windows.Forms.Label label6;
+            System.Windows.Forms.Label label7;
+            System.Windows.Forms.Label label8;
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -40,10 +45,10 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.Label label4;
-            System.Windows.Forms.Label label5;
-            System.Windows.Forms.Label label6;
-            System.Windows.Forms.Label label7;
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             this.comboBoxCOMPorts = new System.Windows.Forms.ComboBox();
             this.btnDisconnectSerial = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
@@ -68,6 +73,18 @@
             this.textBoxPosition = new System.Windows.Forms.TextBox();
             this.textBoxFreq = new System.Windows.Forms.TextBox();
             this.chartVelocity = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.buttonPWM0 = new System.Windows.Forms.Button();
+            this.buttonPWM25 = new System.Windows.Forms.Button();
+            this.buttonPWM50 = new System.Windows.Forms.Button();
+            this.buttonPWM100 = new System.Windows.Forms.Button();
+            this.buttonPWM75 = new System.Windows.Forms.Button();
+            this.txtFilePath = new System.Windows.Forms.TextBox();
+            this.btnSelectFilename = new System.Windows.Forms.Button();
+            this.checkBoxSaveFile = new System.Windows.Forms.CheckBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.textBoxPositionFinal = new System.Windows.Forms.TextBox();
+            this.buttonPositionCommand = new System.Windows.Forms.Button();
+            this.chartPosAbs = new System.Windows.Forms.DataVisualization.Charting.Chart();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -75,8 +92,10 @@
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
+            label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartVelocity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPosAbs)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -94,7 +113,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(19, 379);
+            label1.Location = new System.Drawing.Point(16, 455);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(104, 18);
             label1.TabIndex = 36;
@@ -104,11 +123,63 @@
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label3.Location = new System.Drawing.Point(9, 118);
+            label3.Location = new System.Drawing.Point(9, 154);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(67, 18);
             label3.TabIndex = 39;
             label3.Text = "Direction";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label4.Location = new System.Drawing.Point(22, 324);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(104, 18);
+            label4.TabIndex = 56;
+            label4.Text = "Encoder Ticks";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label5.Location = new System.Drawing.Point(25, 357);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(42, 18);
+            label5.TabIndex = 57;
+            label5.Text = "RPM";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label6.Location = new System.Drawing.Point(225, 420);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(120, 18);
+            label6.TabIndex = 58;
+            label6.Text = "Debugging Tools";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label7.Location = new System.Drawing.Point(25, 384);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(75, 18);
+            label7.TabIndex = 59;
+            label7.Text = "Freq. (Hz)";
+            label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label8.Location = new System.Drawing.Point(22, 259);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(62, 18);
+            label8.TabIndex = 70;
+            label8.Text = "Position";
+            label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // comboBoxCOMPorts
             // 
@@ -138,7 +209,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(187, 158);
+            this.button1.Location = new System.Drawing.Point(205, 197);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 23);
             this.button1.TabIndex = 35;
@@ -149,7 +220,7 @@
             // textBoxSteps
             // 
             this.textBoxSteps.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSteps.Location = new System.Drawing.Point(214, 378);
+            this.textBoxSteps.Location = new System.Drawing.Point(211, 454);
             this.textBoxSteps.Name = "textBoxSteps";
             this.textBoxSteps.Size = new System.Drawing.Size(64, 22);
             this.textBoxSteps.TabIndex = 37;
@@ -159,7 +230,7 @@
             this.checkBoxCW.AutoSize = true;
             this.checkBoxCW.Checked = true;
             this.checkBoxCW.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCW.Location = new System.Drawing.Point(197, 121);
+            this.checkBoxCW.Location = new System.Drawing.Point(197, 157);
             this.checkBoxCW.Name = "checkBoxCW";
             this.checkBoxCW.Size = new System.Drawing.Size(74, 17);
             this.checkBoxCW.TabIndex = 38;
@@ -170,7 +241,7 @@
             // checkBoxACW
             // 
             this.checkBoxACW.AutoSize = true;
-            this.checkBoxACW.Location = new System.Drawing.Point(402, 124);
+            this.checkBoxACW.Location = new System.Drawing.Point(402, 160);
             this.checkBoxACW.Name = "checkBoxACW";
             this.checkBoxACW.Size = new System.Drawing.Size(101, 17);
             this.checkBoxACW.TabIndex = 40;
@@ -182,7 +253,7 @@
             // 
             this.hScrollBarDC.LargeChange = 2;
             this.hScrollBarDC.Location = new System.Drawing.Point(200, 85);
-            this.hScrollBarDC.Maximum = 255;
+            this.hScrollBarDC.Maximum = 65535;
             this.hScrollBarDC.Name = "hScrollBarDC";
             this.hScrollBarDC.Size = new System.Drawing.Size(319, 20);
             this.hScrollBarDC.TabIndex = 41;
@@ -195,7 +266,7 @@
             // txtBytesToRead
             // 
             this.txtBytesToRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBytesToRead.Location = new System.Drawing.Point(39, 423);
+            this.txtBytesToRead.Location = new System.Drawing.Point(36, 499);
             this.txtBytesToRead.Name = "txtBytesToRead";
             this.txtBytesToRead.Size = new System.Drawing.Size(64, 22);
             this.txtBytesToRead.TabIndex = 42;
@@ -203,7 +274,7 @@
             // txtItemsInQueue
             // 
             this.txtItemsInQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtItemsInQueue.Location = new System.Drawing.Point(39, 474);
+            this.txtItemsInQueue.Location = new System.Drawing.Point(36, 550);
             this.txtItemsInQueue.Name = "txtItemsInQueue";
             this.txtItemsInQueue.Size = new System.Drawing.Size(64, 22);
             this.txtItemsInQueue.TabIndex = 43;
@@ -214,16 +285,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSerialData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSerialData.Location = new System.Drawing.Point(300, 378);
+            this.txtSerialData.Location = new System.Drawing.Point(300, 450);
             this.txtSerialData.Multiline = true;
             this.txtSerialData.Name = "txtSerialData";
-            this.txtSerialData.Size = new System.Drawing.Size(313, 124);
+            this.txtSerialData.Size = new System.Drawing.Size(419, 148);
             this.txtSerialData.TabIndex = 44;
             // 
             // textBoxCW
             // 
             this.textBoxCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCW.Location = new System.Drawing.Point(122, 211);
+            this.textBoxCW.Location = new System.Drawing.Point(132, 323);
             this.textBoxCW.Name = "textBoxCW";
             this.textBoxCW.Size = new System.Drawing.Size(64, 22);
             this.textBoxCW.TabIndex = 45;
@@ -232,7 +303,7 @@
             // textBoxACW
             // 
             this.textBoxACW.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxACW.Location = new System.Drawing.Point(217, 212);
+            this.textBoxACW.Location = new System.Drawing.Point(244, 324);
             this.textBoxACW.Name = "textBoxACW";
             this.textBoxACW.Size = new System.Drawing.Size(64, 22);
             this.textBoxACW.TabIndex = 46;
@@ -241,7 +312,7 @@
             // trialtext
             // 
             this.trialtext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trialtext.Location = new System.Drawing.Point(214, 423);
+            this.trialtext.Location = new System.Drawing.Point(211, 499);
             this.trialtext.Name = "trialtext";
             this.trialtext.Size = new System.Drawing.Size(64, 22);
             this.trialtext.TabIndex = 47;
@@ -249,7 +320,7 @@
             // textTimeRev
             // 
             this.textTimeRev.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textTimeRev.Location = new System.Drawing.Point(217, 474);
+            this.textTimeRev.Location = new System.Drawing.Point(214, 550);
             this.textTimeRev.Name = "textTimeRev";
             this.textTimeRev.Size = new System.Drawing.Size(64, 22);
             this.textTimeRev.TabIndex = 49;
@@ -257,7 +328,7 @@
             // textTimeFwd
             // 
             this.textTimeFwd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textTimeFwd.Location = new System.Drawing.Point(122, 473);
+            this.textTimeFwd.Location = new System.Drawing.Point(119, 549);
             this.textTimeFwd.Name = "textTimeFwd";
             this.textTimeFwd.Size = new System.Drawing.Size(64, 22);
             this.textTimeFwd.TabIndex = 48;
@@ -265,7 +336,7 @@
             // textBoxVelACW
             // 
             this.textBoxVelACW.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxVelACW.Location = new System.Drawing.Point(217, 240);
+            this.textBoxVelACW.Location = new System.Drawing.Point(244, 352);
             this.textBoxVelACW.Name = "textBoxVelACW";
             this.textBoxVelACW.Size = new System.Drawing.Size(64, 22);
             this.textBoxVelACW.TabIndex = 51;
@@ -274,7 +345,7 @@
             // textBoxVelCW
             // 
             this.textBoxVelCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxVelCW.Location = new System.Drawing.Point(122, 239);
+            this.textBoxVelCW.Location = new System.Drawing.Point(132, 351);
             this.textBoxVelCW.Name = "textBoxVelCW";
             this.textBoxVelCW.Size = new System.Drawing.Size(64, 22);
             this.textBoxVelCW.TabIndex = 50;
@@ -288,7 +359,7 @@
             this.chartPosition.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartPosition.Legends.Add(legend1);
-            this.chartPosition.Location = new System.Drawing.Point(619, 21);
+            this.chartPosition.Location = new System.Drawing.Point(552, 21);
             this.chartPosition.Name = "chartPosition";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -296,7 +367,7 @@
             series1.Name = "Series1";
             series1.Points.Add(dataPoint1);
             this.chartPosition.Series.Add(series1);
-            this.chartPosition.Size = new System.Drawing.Size(542, 243);
+            this.chartPosition.Size = new System.Drawing.Size(371, 232);
             this.chartPosition.TabIndex = 52;
             this.chartPosition.Text = "chart1";
             this.chartPosition.Click += new System.EventHandler(this.chartPosition_Click);
@@ -304,7 +375,7 @@
             // textBoxPosition
             // 
             this.textBoxPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPosition.Location = new System.Drawing.Point(126, 423);
+            this.textBoxPosition.Location = new System.Drawing.Point(123, 499);
             this.textBoxPosition.Name = "textBoxPosition";
             this.textBoxPosition.Size = new System.Drawing.Size(64, 22);
             this.textBoxPosition.TabIndex = 53;
@@ -313,7 +384,7 @@
             // textBoxFreq
             // 
             this.textBoxFreq.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFreq.Location = new System.Drawing.Point(122, 271);
+            this.textBoxFreq.Location = new System.Drawing.Point(132, 383);
             this.textBoxFreq.Name = "textBoxFreq";
             this.textBoxFreq.Size = new System.Drawing.Size(64, 22);
             this.textBoxFreq.TabIndex = 54;
@@ -339,52 +410,154 @@
             this.chartVelocity.TabIndex = 55;
             this.chartVelocity.Text = "chart1";
             // 
-            // label4
+            // buttonPWM0
             // 
-            label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label4.Location = new System.Drawing.Point(12, 212);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(104, 18);
-            label4.TabIndex = 56;
-            label4.Text = "Encoder Ticks";
+            this.buttonPWM0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPWM0.Location = new System.Drawing.Point(12, 117);
+            this.buttonPWM0.Name = "buttonPWM0";
+            this.buttonPWM0.Size = new System.Drawing.Size(78, 23);
+            this.buttonPWM0.TabIndex = 60;
+            this.buttonPWM0.Text = "PWM 0%";
+            this.buttonPWM0.UseVisualStyleBackColor = true;
+            this.buttonPWM0.Click += new System.EventHandler(this.buttonPWM0_Click);
             // 
-            // label5
+            // buttonPWM25
             // 
-            label5.AutoSize = true;
-            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label5.Location = new System.Drawing.Point(15, 245);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(42, 18);
-            label5.TabIndex = 57;
-            label5.Text = "RPM";
+            this.buttonPWM25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPWM25.Location = new System.Drawing.Point(126, 117);
+            this.buttonPWM25.Name = "buttonPWM25";
+            this.buttonPWM25.Size = new System.Drawing.Size(78, 23);
+            this.buttonPWM25.TabIndex = 62;
+            this.buttonPWM25.Text = "PWM 25%";
+            this.buttonPWM25.UseVisualStyleBackColor = true;
+            this.buttonPWM25.Click += new System.EventHandler(this.buttonPWM25_Click);
             // 
-            // label6
+            // buttonPWM50
             // 
-            label6.AutoSize = true;
-            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label6.Location = new System.Drawing.Point(228, 344);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(120, 18);
-            label6.TabIndex = 58;
-            label6.Text = "Debugging Tools";
+            this.buttonPWM50.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPWM50.Location = new System.Drawing.Point(244, 117);
+            this.buttonPWM50.Name = "buttonPWM50";
+            this.buttonPWM50.Size = new System.Drawing.Size(78, 23);
+            this.buttonPWM50.TabIndex = 63;
+            this.buttonPWM50.Text = "PWM 50%";
+            this.buttonPWM50.UseVisualStyleBackColor = true;
+            this.buttonPWM50.Click += new System.EventHandler(this.buttonPWM50_Click);
             // 
-            // label7
+            // buttonPWM100
             // 
-            label7.AutoSize = true;
-            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label7.Location = new System.Drawing.Point(15, 272);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(75, 18);
-            label7.TabIndex = 59;
-            label7.Text = "Freq. (Hz)";
-            label7.Click += new System.EventHandler(this.label7_Click);
+            this.buttonPWM100.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPWM100.Location = new System.Drawing.Point(457, 117);
+            this.buttonPWM100.Name = "buttonPWM100";
+            this.buttonPWM100.Size = new System.Drawing.Size(89, 23);
+            this.buttonPWM100.TabIndex = 64;
+            this.buttonPWM100.Text = "PWM 100%";
+            this.buttonPWM100.UseVisualStyleBackColor = true;
+            this.buttonPWM100.Click += new System.EventHandler(this.buttonPWM100_Click);
+            // 
+            // buttonPWM75
+            // 
+            this.buttonPWM75.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPWM75.Location = new System.Drawing.Point(350, 117);
+            this.buttonPWM75.Name = "buttonPWM75";
+            this.buttonPWM75.Size = new System.Drawing.Size(78, 23);
+            this.buttonPWM75.TabIndex = 65;
+            this.buttonPWM75.Text = "PWM 75%";
+            this.buttonPWM75.UseVisualStyleBackColor = true;
+            this.buttonPWM75.Click += new System.EventHandler(this.buttonPWM75_Click);
+            // 
+            // txtFilePath
+            // 
+            this.txtFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilePath.Location = new System.Drawing.Point(467, 335);
+            this.txtFilePath.Name = "txtFilePath";
+            this.txtFilePath.Size = new System.Drawing.Size(244, 20);
+            this.txtFilePath.TabIndex = 68;
+            // 
+            // btnSelectFilename
+            // 
+            this.btnSelectFilename.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectFilename.Location = new System.Drawing.Point(352, 333);
+            this.btnSelectFilename.Name = "btnSelectFilename";
+            this.btnSelectFilename.Size = new System.Drawing.Size(99, 23);
+            this.btnSelectFilename.TabIndex = 67;
+            this.btnSelectFilename.Text = "Select Filename";
+            this.btnSelectFilename.UseVisualStyleBackColor = true;
+            this.btnSelectFilename.Click += new System.EventHandler(this.btnSelectFilename_Click);
+            // 
+            // checkBoxSaveFile
+            // 
+            this.checkBoxSaveFile.AutoSize = true;
+            this.checkBoxSaveFile.Location = new System.Drawing.Point(352, 309);
+            this.checkBoxSaveFile.Name = "checkBoxSaveFile";
+            this.checkBoxSaveFile.Size = new System.Drawing.Size(88, 17);
+            this.checkBoxSaveFile.TabIndex = 66;
+            this.checkBoxSaveFile.Text = "Save to a file";
+            this.checkBoxSaveFile.UseVisualStyleBackColor = true;
+            this.checkBoxSaveFile.CheckedChanged += new System.EventHandler(this.checkBoxSaveFile_CheckedChanged);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.InitialDirectory = "C:\\";
+            // 
+            // textBoxPositionFinal
+            // 
+            this.textBoxPositionFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPositionFinal.Location = new System.Drawing.Point(132, 258);
+            this.textBoxPositionFinal.Name = "textBoxPositionFinal";
+            this.textBoxPositionFinal.Size = new System.Drawing.Size(64, 22);
+            this.textBoxPositionFinal.TabIndex = 69;
+            this.textBoxPositionFinal.Text = "0";
+            this.textBoxPositionFinal.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // buttonPositionCommand
+            // 
+            this.buttonPositionCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPositionCommand.Location = new System.Drawing.Point(228, 257);
+            this.buttonPositionCommand.Name = "buttonPositionCommand";
+            this.buttonPositionCommand.Size = new System.Drawing.Size(117, 23);
+            this.buttonPositionCommand.TabIndex = 71;
+            this.buttonPositionCommand.Text = "Send Position";
+            this.buttonPositionCommand.UseVisualStyleBackColor = true;
+            this.buttonPositionCommand.Click += new System.EventHandler(this.buttonPositionCommand_Click);
+            // 
+            // chartPosAbs
+            // 
+            chartArea3.AxisY.Maximum = 400D;
+            chartArea3.AxisY.Minimum = 0D;
+            chartArea3.Name = "ChartArea1";
+            this.chartPosAbs.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartPosAbs.Legends.Add(legend3);
+            this.chartPosAbs.Location = new System.Drawing.Point(594, 21);
+            this.chartPosAbs.Name = "chartPosAbs";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.Points.Add(dataPoint3);
+            this.chartPosAbs.Series.Add(series3);
+            this.chartPosAbs.Size = new System.Drawing.Size(695, 564);
+            this.chartPosAbs.TabIndex = 72;
+            this.chartPosAbs.Text = "chart1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1183, 514);
+            this.ClientSize = new System.Drawing.Size(1289, 610);
+            this.Controls.Add(this.chartPosAbs);
+            this.Controls.Add(this.buttonPositionCommand);
+            this.Controls.Add(label8);
+            this.Controls.Add(this.textBoxPositionFinal);
+            this.Controls.Add(this.txtFilePath);
+            this.Controls.Add(this.btnSelectFilename);
+            this.Controls.Add(this.checkBoxSaveFile);
+            this.Controls.Add(this.buttonPWM75);
+            this.Controls.Add(this.buttonPWM100);
+            this.Controls.Add(this.buttonPWM50);
+            this.Controls.Add(this.buttonPWM25);
+            this.Controls.Add(this.buttonPWM0);
             this.Controls.Add(label7);
             this.Controls.Add(label6);
             this.Controls.Add(label5);
@@ -418,6 +591,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartVelocity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPosAbs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,6 +623,18 @@
         private System.Windows.Forms.TextBox textBoxPosition;
         private System.Windows.Forms.TextBox textBoxFreq;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartVelocity;
+        private System.Windows.Forms.Button buttonPWM0;
+        private System.Windows.Forms.Button buttonPWM25;
+        private System.Windows.Forms.Button buttonPWM50;
+        private System.Windows.Forms.Button buttonPWM100;
+        private System.Windows.Forms.Button buttonPWM75;
+        private System.Windows.Forms.TextBox txtFilePath;
+        private System.Windows.Forms.Button btnSelectFilename;
+        private System.Windows.Forms.CheckBox checkBoxSaveFile;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.TextBox textBoxPositionFinal;
+        private System.Windows.Forms.Button buttonPositionCommand;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPosAbs;
     }
 }
 
