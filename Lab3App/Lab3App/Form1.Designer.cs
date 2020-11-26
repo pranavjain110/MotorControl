@@ -398,7 +398,7 @@
             this.chartVelocity.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chartVelocity.Legends.Add(legend2);
-            this.chartVelocity.Location = new System.Drawing.Point(619, 259);
+            this.chartVelocity.Location = new System.Drawing.Point(747, 267);
             this.chartVelocity.Name = "chartVelocity";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -513,7 +513,7 @@
             // buttonPositionCommand
             // 
             this.buttonPositionCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPositionCommand.Location = new System.Drawing.Point(228, 257);
+            this.buttonPositionCommand.Location = new System.Drawing.Point(334, 259);
             this.buttonPositionCommand.Name = "buttonPositionCommand";
             this.buttonPositionCommand.Size = new System.Drawing.Size(117, 23);
             this.buttonPositionCommand.TabIndex = 71;
@@ -529,7 +529,7 @@
             this.chartPosAbs.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             this.chartPosAbs.Legends.Add(legend3);
-            this.chartPosAbs.Location = new System.Drawing.Point(594, 21);
+            this.chartPosAbs.Location = new System.Drawing.Point(905, 21);
             this.chartPosAbs.Name = "chartPosAbs";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -537,7 +537,7 @@
             series3.Name = "Series1";
             series3.Points.Add(dataPoint3);
             this.chartPosAbs.Series.Add(series3);
-            this.chartPosAbs.Size = new System.Drawing.Size(695, 564);
+            this.chartPosAbs.Size = new System.Drawing.Size(384, 232);
             this.chartPosAbs.TabIndex = 72;
             this.chartPosAbs.Text = "chart1";
             // 

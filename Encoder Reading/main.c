@@ -326,7 +326,6 @@ __interrupt void Timer0_B1 (void)
               break;
     }
     P3OUT ^= BIT2;
-
 }
 
 

@@ -2,8 +2,8 @@
 #include<string.h>
 #include <msp430.h> 
 const unsigned int sizeOfBuffer =50;
-unsigned int state = 0, dataByte1, dataByte2, dataWord, escByte, startByteFlag = 0,setFrequencyFlag = 0, flagACW = 0, flagCW = 0;
-volatile unsigned int bufferLength = 0, readIndex = 0, writeIndex = 0, flagByteRx = 0,steps=100 ;
+unsigned int state = 0, dataByte1, dataByte2, dataWord, escByte, startByteFlag = 0,setFrequencyFlag = 0, flagACW = 0, flagCW = 1;
+volatile unsigned int bufferLength = 0, readIndex = 0, writeIndex = 0, flagByteRx = 0,steps=0,stepsDesired = 1000, moveStepperFlag = 1 ;
 volatile unsigned char RxByte;
 volatile unsigned int buffer[sizeOfBuffer];
 char byteRemoved[]=" \n\r";
@@ -42,7 +42,7 @@ int main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
 
-//Setup UART for user input
+    //Setup UART for user input
     // Configure clocks
     CSCTL0 = 0xA500;                        // Write password to modify CS registers
     CSCTL1 = DCOFSEL0 + DCOFSEL1;           // DCO = 8 MHz
@@ -102,7 +102,7 @@ int main(void)
     //    P1OUT |= BIT6;
 
 
-    i = stepperStateTable[1];
+//    i = stepperStateTable[1];
     __no_operation;
 
     stepperState = 1;
@@ -110,14 +110,12 @@ int main(void)
 
     while(1)
     {
-
         if(flagByteRx == 1)
         {
             __no_operation();                       // For debug only
             if(bufferLength > 0)
             {
                 __no_operation();                       // For debug only
-
 
                 byteRemoved[0] = buffer[readIndex];
 
@@ -131,8 +129,6 @@ int main(void)
 //                sendMessageOverUART(byteRemoved);
                 if(bufferLength == 0)
                     flagByteRx = 0;
-
-
 
              //__________________________________Setting timer______________________________________________//
                 if(byteRemoved[0] == 255 || state == 4)
@@ -152,14 +148,13 @@ int main(void)
                     if(byteRemoved[0] == 3)
                     {
                         __no_operation();                       // For debug only
-
-                        flagACW =1;
-                        flagCW =0;
+//                        flagACW =1;
+//                        flagCW =0;
                     }
                     if(byteRemoved[0] == 4)
                     {
-                        flagACW =0;
-                        flagCW =1;
+//                        flagACW =0;
+//                        flagCW =1;
                     }
                 }
                 else if (state == 1)
@@ -199,25 +194,19 @@ int main(void)
                     setFrequencyFlag = 1;
                     state = 4;
                     __no_operation();
-
                 }
                 else
                 {
                     startByteFlag=0;
                     __no_operation();
-
                 }
-
-
             }
-
         }
-
         if(setFrequencyFlag == 1)
         {
             setFrequencyFlag = 0 ;
             TB1CCR1 = dataWord;
-            steps = dataByte2;
+            stepsDesired = dataByte2;
 //            steps=8000;
             TB1CCTL1 |= CCIE; // TBCCR0 interrupt enabled
 
@@ -246,8 +235,6 @@ __interrupt void USCI_A0_ISR(void)
         }
         else
         {
-
-
             buffer[writeIndex]=RxByte;
             writeIndex++;
             bufferLength++;
@@ -265,13 +252,29 @@ __interrupt void USCI_A0_ISR(void)
 __interrupt void Timer_B1 (void)
 
 {
-    if(steps>=1)
+    if(stepsDesired > steps)
+    {
+        flagCW = 1;
+        moveStepperFlag = 1;
+    }
+    else if(stepsDesired < steps)
+    {
+        moveStepperFlag = 1;
+        flagACW = 1;
+    }
+    else if(stepsDesired == steps)
+    {
+        moveStepperFlag = 0;
+        flagACW = 0;
+        __no_operation();
+        TB1CCTL1 &= ~CCIE; // TBCCR0 interrupt enabled
+    }
+
+    if(moveStepperFlag == 1)
     {
       switch( TB1IV )
       {
-
           case 2:
-
               j= (stepperState - 1) * 4;
 
               P1OUT &= ~BIT3 + ~BIT4 + ~BIT5 + ~BIT6;
@@ -279,34 +282,27 @@ __interrupt void Timer_B1 (void)
               P1OUT |= BIT4 & stepperStateTable[j + 2]<<4 ;
               P1OUT |= BIT5 & stepperStateTable[j + 1]<<5 ;
               P1OUT |= BIT6 & stepperStateTable[j + 3]<<6 ;
-              if(flagACW == 1)
+              if(flagACW == 1){
                   stepperState--;
-              else
+                  steps--;
+              }
+              else{
                   stepperState++;
+                  steps++;
+              }
               if(stepperState == 9)
                   stepperState=1;
               if(stepperState == 0)
                   stepperState=9;
               TB1CTL |= TBCLR;
-              steps--;
               __no_operation();                       // For debug only
               break;
 
-
           default:
               __no_operation();                       // For debug only
-
                   break;
       }
     }
-    else
-    {
-        __no_operation();
-        TB1CCTL1 &= ~CCIE; // TBCCR0 interrupt enabled
-    }
-
-
-
 }
 
 

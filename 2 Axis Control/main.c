@@ -66,6 +66,10 @@ int main(void)
 //    P1OUT |= BIT3 + BIT4 + BIT5 + BIT6;
     stepperState = 1;
 
+    //Setting port P4.0 as output for solonoid mosfet
+    P4DIR |= BIT0;
+    P4OUT &= ~BIT0; //Turn solenoid on
+    P4OUT = BIT0;   //Turn solenoid off
 
     //_________Code for DC Motor____________
 
